@@ -14,7 +14,7 @@ ext_modules = [
 ]
 
 setup(
-    name='pycocotools',
+    name='ns-pycocotools',
     packages=['pycocotools'],
     package_dir = {'pycocotools': 'pycocotools'},
     install_requires=[
@@ -22,6 +22,6 @@ setup(
         'cython>=0.27.3',
         'matplotlib>=2.1.0'
     ],
-    version='2.0',
+    version='2.1',
     ext_modules= ext_modules
 )
