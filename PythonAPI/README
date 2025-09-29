@@ -1,0 +1,8 @@
+Building
+=========
+
+Just type `uv build` or `uv build --sdist` for source package.
+
+Publishing
+=========
+`uv publish --index neuralspike -v dist/*.tar.gz`
