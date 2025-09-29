@@ -1,0 +1,3 @@
+include common/maskApi.c
+include common/maskApi.h
+include pycocotools/_mask.pyx
