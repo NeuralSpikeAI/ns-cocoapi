@@ -32,7 +32,7 @@ setup(
         'cython>=0.27.3',
         'matplotlib>=2.1.0'
     ],
-    version='2.1',
+    version='2.2.0',
     cmdclass={"build_ext": build_ext_with_numpy},
     ext_modules= extensions
 )
