@@ -30,9 +30,10 @@ setup(
     install_requires=[
         'setuptools>=18.0',
         'cython>=0.27.3',
-        'matplotlib>=2.1.0'
+        'matplotlib>=2.1.0',
+        'loguru'
     ],
-    version='2.2.0',
+    version='2.2.1',
     cmdclass={"build_ext": build_ext_with_numpy},
     ext_modules= extensions
 )
