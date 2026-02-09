@@ -21,7 +21,6 @@ extensions = [
             os.path.join(base_dir, "pycocotools", "_mask.pyx"),
         ],
         include_dirs=[common_dir],
-        extra_compile_args=["-Wno-cpp", "-Wno-unused-function", "-std=c99"],
     )
 ]
 setup(

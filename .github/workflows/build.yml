@@ -1,0 +1,68 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+
+  pull_request: ~
+
+  workflow_dispatch:
+    inputs:
+      wheels:
+        description: Which wheels to build (e.g. "cp39-* cp310-win_amd64").
+        required: false
+        default: ""
+
+jobs:
+  build_sdist:
+    name: Build source distribution
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Build source distribution
+        run: uv build --sdist PythonAPI --out-dir dist
+
+      - name: Upload source distribution
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: ./dist/*.tar.gz
+
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Configure CIBW_BUILD
+        if: ${{ github.event.inputs.wheels != '' }}
+        run: echo "CIBW_BUILD=${{ github.event.inputs.wheels }}" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v3.3.1
+        with:
+          package-dir: PythonAPI
+          output-dir: dist
+        continue-on-error: true
+
+      - name: Upload wheels
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ matrix.os }}
+          path: ./dist/*.whl
+          if-no-files-found: ignore
