@@ -32,7 +32,7 @@ setup(
         'matplotlib>=2.1.0',
         'loguru'
     ],
-    version='2.2.1',
+    version='2.3.1',
     cmdclass={"build_ext": build_ext_with_numpy},
     ext_modules= extensions
 )
