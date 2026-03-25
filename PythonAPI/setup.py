@@ -26,10 +26,12 @@ extensions = [
 setup(
     name='ns-pycocotools',
     packages=find_packages(),
+    python_requires='>=3.9',
     install_requires=[
         'setuptools>=18.0',
         'cython>=0.27.3',
         'matplotlib>=2.1.0',
+        'numpy>=2.0,<2.3',
         'loguru'
     ],
     version='2.2.1',

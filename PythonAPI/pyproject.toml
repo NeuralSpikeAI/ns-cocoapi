@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=42", "wheel", "cython", "numpy", "loguru"]
+requires = ["setuptools>=82", "wheel", "cython", "numpy>=2.0,<2.3", "loguru"]
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
